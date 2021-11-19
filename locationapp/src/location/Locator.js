@@ -1,19 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Locator = () => {
+    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState('');
+
     const LocationGetter = (pos) => {
-        let latitude = pos.coords.latitude;
-        let longitude = pos.coords.longitude;
-        let location = [latitude, longitude];
-        // !! REMOVE THIS LATER
-        console.log(location);
-        console.log('Dont forget to remove these console logs');
+        setLatitude(pos.coords.latitude);
+        setLongitude(pos.coords.longitude);
     }
     navigator.geolocation.getCurrentPosition(LocationGetter);
 
     return(
-        <>
-        </>
+        <div>
+            <p>{`Your current geographical coordinates are - Latitude: ${latitude}, Longitude:${longitude}`}</p>
+        </div>
     )
 }
 
