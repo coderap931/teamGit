@@ -11,6 +11,7 @@ const WeatherApp = () => {
     const [feels_like, setFeels_like] = useState('');
     const [humidity, setHumidity] = useState('');
     const [wthrstatus, setWthrStatus] = useState('');
+    const [imperialActive, setImperialActive] = useState(true);
     // const [unit, setUnit] = useState('imperial');
     // const [displayUnit, setDisplayUnit] = useState('F');
 
@@ -33,7 +34,13 @@ const WeatherApp = () => {
     }
 
     const fetchWeather = () => {
-        let url = `${baseURL}?lat=${latitude}&lon=${longitude}&units=imperial&appid=${key}`;
+        let unit = '';
+        if (imperialActive === true){
+            unit = 'imperial';
+        } else {
+            unit = 'metric';
+        }
+        let url = `${baseURL}?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${key}`;
         fetch(url)
             .then(res => res.json())
             .then(json => setWeatherResults(json))
@@ -54,6 +61,14 @@ const WeatherApp = () => {
     //     }
     // }
 
+    const changeUnitFalse = () => {
+        setImperialActive(false);
+    }
+
+    const changeUnitTrue = () => {
+        setImperialActive(true);
+    }
+
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((pos) => success(pos), (posErr) => error(posErr));
         if(longitude !== ''){
@@ -65,20 +80,17 @@ const WeatherApp = () => {
     return(
         <div className='main'>
             <div className='mainDiv'>
-                {/* <Button onClick={changeUnit}>Change Units of Measurement</Button> */}
                 <Table bordered striped>
                     <thead>
                         <tr>
-                            {/* <th>Current Units of Measurement</th> */}
-                            <th>Temperature (F)</th>
-                            <th>Feels Like Temperature (F)</th>
+                            <th>Temperature</th>
+                            <th>Feels Like Temperature</th>
                             <th>Percent Humidity</th>
                             <th>Weather Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            {/* <td>{displayUnit}</td> */}
                             <td>{temp}</td>
                             <td>{feels_like}</td>
                             <td>{humidity}</td>
@@ -86,6 +98,9 @@ const WeatherApp = () => {
                         </tr>
                     </tbody>
                 </Table>
+                {
+                    imperialActive ? <button onClick={changeUnitFalse}>Change to C</button> : <button onClick={changeUnitTrue}>Change to F</button>
+                }
             </div>
         </div>
     )
