@@ -1,7 +1,18 @@
-.App {
+img{
+  height:270px;
+  width: 270px;
+border-radius: 30%;
+margin-top: 10rem;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+body{
   text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+button{
+  margin-top: 4rem;
+  
 }
