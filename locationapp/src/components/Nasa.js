@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 
 
 const baseUrl = 'https://api.nasa.gov/planetary/earth/imagery';
@@ -8,25 +7,36 @@ const key = 'V4T32jTNP5iky7Yy6FCkTMuJvvktqIm1abCiPqbW';
 
 
 
-const Nasa = (props) => {
+const Nasa = () => {
     // setting state variables for lon and lat and image
-    const [image, setImage] = useState('');
-    const shortLat = Math.trunc(props.latitude);
-    const shortLon = Math.trunc(props.longitude)
+    const [image, setImage] = useState(''); 
+    const [latitude, setLatitude] = useState('')
+    const [longitude, setLongitude] = useState('')
 
+      
+  
+    function assignLocation() {
+        const shortLat = Math.trunc(latitude);
+        const shortLon = Math.trunc(longitude)
 
-    let url = `${baseUrl}?lon=${shortLon}&lat=${shortLat}&date=2014-01-01&api_key=${key}`;
-    console.log(url)
-
-    const handleClick = () => {
+        let url = `${baseUrl}?lon=${shortLon}&lat=${shortLat}&date=2014-01-01&api_key=${key}`;
         fetch(url)
-            .then(res => res)
-            .then(res => {
-                console.log(res)
-                setImage(res.url)
-            })
-    }
+        .then(res => res)
+        .then(res => {
+            console.log(res)
+            setImage(res.url)
+        })
 
+    }
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((pos) => {
+            setLatitude(pos.coords.latitude)
+            setLongitude(pos.coords.longitude)
+          });
+        if(latitude !== ''){
+            assignLocation();
+        }
+      });
 
 
 
@@ -34,7 +44,6 @@ const Nasa = (props) => {
     return (
         <div>
             <img src={image} alt="" />
-            <button onClick={handleClick}>Button</button>
         </div>
     )
 
@@ -42,9 +51,4 @@ const Nasa = (props) => {
 
 }
 
-
-
-
-
-
-export default Nasa
+export default Nasa;
