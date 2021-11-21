@@ -66,7 +66,7 @@ const WeatherApp = () => {
         <div className='main'>
             <div className='mainDiv'>
                 {/* <Button onClick={changeUnit}>Change Units of Measurement</Button> */}
-                <Table striped>
+                <Table bordered striped>
                     <thead>
                         <tr>
                             {/* <th>Current Units of Measurement</th> */}
