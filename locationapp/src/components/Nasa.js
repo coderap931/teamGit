@@ -21,7 +21,6 @@ const Nasa = () => {
 
         let url = `${baseUrl}?lon=${shortLon}&lat=${shortLat}&date=2014-01-01&api_key=${key}`;
         fetch(url)
-        .then(res => res)
         .then(res => {
             console.log(res)
             setImage(res.url)
@@ -33,7 +32,7 @@ const Nasa = () => {
             setLatitude(pos.coords.latitude)
             setLongitude(pos.coords.longitude)
           });
-        if(latitude !== ''){
+        if(longitude !== ''){
             assignLocation();
         }
       });
