@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Table} from 'reactstrap';
+import {Container, Row, Col} from 'reactstrap';
+import {WiCelsius, WiFahrenheit} from 'react-icons/wi'
 
 const baseURL = 'https://api.openweathermap.org/data/2.5/onecall';
 const key = '76d1fa4b8a01de7c08aedbe43eee5eb7';
@@ -47,20 +48,6 @@ const WeatherApp = () => {
             .catch(err => console.log(err));
     }
 
-    // const changeUnit = () => {
-    //     if(unit === 'imperial'){
-    //         setUnit('metric');
-    //         setDisplayUnit('C');
-    //         fetchWeather();
-    //     } else if (unit === 'metric'){
-    //         setUnit('imperial');
-    //         setDisplayUnit('F');
-    //         fetchWeather();
-    //     } else {
-    //         console.log('What the heck kinda unit of measurement is that?!')
-    //     }
-    // }
-
     const changeUnitFalse = () => {
         setImperialActive(false);
     }
@@ -80,27 +67,44 @@ const WeatherApp = () => {
     return(
         <div className='main'>
             <div className='mainDiv'>
-                <Table bordered striped>
-                    <thead>
-                        <tr>
-                            <th>Temperature</th>
-                            <th>Feels Like Temperature</th>
-                            <th>Percent Humidity</th>
-                            <th>Weather Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{temp}</td>
-                            <td>{feels_like}</td>
-                            <td>{humidity}</td>
-                            <td>{wthrstatus}</td>
-                        </tr>
-                    </tbody>
-                </Table>
-                {
-                    imperialActive ? <button onClick={changeUnitFalse}>Change to C</button> : <button onClick={changeUnitTrue}>Change to F</button>
-                }
+                <Container/>
+                    <Row className='heads'>
+                        <Col className="border">
+                            <h2>Temperature</h2>
+                        </Col>
+                        <Col className="border">
+                            <h2>Feels Like Temperature</h2>
+                        </Col>
+                    </Row>
+                    <Row className='bodies'>
+                        <Col className="border">
+                            <h3>{temp}</h3>
+                        </Col>
+                        <Col className="border">
+                            <h3>{feels_like}</h3>
+                        </Col>
+                    </Row>
+                    <Row className='heads'>
+                        <Col className="border">
+                            <h2>Percent Humidity</h2>
+                        </Col>
+                        <Col className="border">
+                            <h2>Weather Status</h2>
+                        </Col>
+                    </Row>
+                    <Row className='bodies'>
+                        <Col className="border">
+                            <h3>{humidity}</h3>
+                        </Col>
+                        <Col className="border">
+                            <h3>{wthrstatus}</h3>
+                        </Col>
+                    </Row>
+                    <Row id='buttonContainer'>
+                        {
+                            imperialActive ? <button className='button' onClick={changeUnitFalse}>Change to <WiCelsius id='celsius'/></button> : <button className='button' onClick={changeUnitTrue}>Change to <WiFahrenheit id='fahrenheit'/></button>
+                        }
+                    </Row>
             </div>
         </div>
     )
