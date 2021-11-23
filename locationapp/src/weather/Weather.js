@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Container, Row, Col} from 'reactstrap';
+import {Row, Col} from 'reactstrap';
 import {WiCelsius, WiFahrenheit} from 'react-icons/wi'
 
 const baseURL = 'https://api.openweathermap.org/data/2.5/onecall';
@@ -67,44 +67,43 @@ const WeatherApp = () => {
     return(
         <div className='main'>
             <div className='mainDiv'>
-                <Container/>
-                    <Row className='heads'>
-                        <Col className="border">
-                            <h2>Temperature</h2>
-                        </Col>
-                        <Col className="border">
-                            <h2>Feels Like Temperature</h2>
-                        </Col>
-                    </Row>
-                    <Row className='bodies'>
-                        <Col className="border">
-                            <h3>{temp}</h3>
-                        </Col>
-                        <Col className="border">
-                            <h3>{feels_like}</h3>
-                        </Col>
-                    </Row>
-                    <Row className='heads'>
-                        <Col className="border">
-                            <h2>Percent Humidity</h2>
-                        </Col>
-                        <Col className="border">
-                            <h2>Weather Status</h2>
-                        </Col>
-                    </Row>
-                    <Row className='bodies'>
-                        <Col className="border">
-                            <h3>{humidity}</h3>
-                        </Col>
-                        <Col className="border">
-                            <h3>{wthrstatus}</h3>
-                        </Col>
-                    </Row>
-                    <Row id='buttonContainer'>
-                        {
-                            imperialActive ? <button className='button' onClick={changeUnitFalse}>Change to <WiCelsius id='celsius'/></button> : <button className='button' onClick={changeUnitTrue}>Change to <WiFahrenheit id='fahrenheit'/></button>
-                        }
-                    </Row>
+                <Row className='heads'>
+                    <Col className="border">
+                        <h2>Temperature</h2>
+                    </Col>
+                    <Col className="border">
+                        <h2>Feels Like Temperature</h2>
+                    </Col>
+                </Row>
+                <Row className='bodies'>
+                    <Col className="border">
+                        <h3>{temp}</h3>
+                    </Col>
+                    <Col className="border">
+                        <h3>{feels_like}</h3>
+                    </Col>
+                </Row>
+                <Row className='heads'>
+                    <Col className="border">
+                        <h2>Percent Humidity</h2>
+                    </Col>
+                    <Col className="border">
+                        <h2>Weather Status</h2>
+                    </Col>
+                </Row>
+                <Row className='bodies'>
+                    <Col className="border">
+                        <h3>{humidity}</h3>
+                    </Col>
+                    <Col className="border">
+                        <h3>{wthrstatus}</h3>
+                    </Col>
+                </Row>
+                <Row id='buttonContainer'>
+                    {
+                        imperialActive ? <button className='button' onClick={changeUnitFalse}>Change to <WiCelsius id='celsius'/></button> : <button className='button' onClick={changeUnitTrue}>Change to <WiFahrenheit id='fahrenheit'/></button>
+                    }
+                </Row>
             </div>
         </div>
     )
