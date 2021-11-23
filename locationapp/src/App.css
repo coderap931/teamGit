@@ -1,18 +1,59 @@
 img{
   height:270px;
   width: 270px;
-border-radius: 30%;
-margin-top: 10rem;
-display: block;
-margin-left: auto;
-margin-right: auto;
+  border: 3px solid white;
+  border-radius: 20%;
+  margin-top: 10rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10vh;
 }
 
 body{
   text-align: center;
+  background: linear-gradient(to bottom right, rgb(0, 172, 0), rgb(167, 170, 2));
+  background-repeat: no-repeat;
 }
 
-button{
-  margin-top: 4rem;
+#buttonContainer{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  width: 15vw;
+}
+
+.button {
+  background-color: lightblue;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+#celsius {
+  height: 4vh;
+  width: 4vw;
+}
+
+
+#fahrenheit {
+  height: 4vh;
+  width: 4vh;
+}
+
+.App{
+  height: 86vh;
+}
+
+.heads {
+  background: rgb(0, 212, 0);
+  background-repeat: no-repeat;
+  font-weight: bold;
+}
   
+.border {
+  text-align: center;
+  background: rgb(0, 212, 0);
+  background-repeat: no-repeat;
+  padding: 1vh;
 }
